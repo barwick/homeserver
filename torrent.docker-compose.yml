@@ -1,25 +1,18 @@
-version: '3.3'
+version: "2.1"
 services:
-    transmission-openvpn:
-        cap_add:
-            - NET_ADMIN
-        container_name: transmission-openvpn
-        volumes:
-            - /data/torrent/data:/data
-            - /data/torrent/config:/config
-        environment:
-            - OPENVPN_PROVIDER=NORDVPN
-            - NORDVPN_COUNTRY=GB
-            - NORDVPN_PROTOCOL=tcp
-            - NORDVPN_CATEGORY=legacy_p2p
-            - OPENVPN_USERNAME=7PubespEtbWubwHF4YWgYQVZ
-            - OPENVPN_PASSWORD=GhsURZsVA9337HHKRogc8ziz
-            - LOCAL_NETWORK=192.168.0.0/16
-        logging:
-            driver: json-file
-            options:
-                max-size: 10m
-        ports:
-            - '9091:9091'
-            - '51413:51413'
-        image: haugene/transmission-openvpn
+  transmission:
+    image: lscr.io/linuxserver/transmission:4.0.2
+    container_name: transmission
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /data/torrent/watch:/watch
+      - /data/torrent/downloads:/downloads
+      - /data/torrent/config:/config
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    restart: unless-stopped
