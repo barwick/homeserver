@@ -1,0 +1,25 @@
+version: '3.3'
+services:
+    transmission-openvpn:
+        cap_add:
+            - NET_ADMIN
+        container_name: transmission-openvpn
+        volumes:
+            - /data/torrent/data:/data
+            - /data/torrent/config:/config
+        environment:
+            - OPENVPN_PROVIDER=NORDVPN
+            - NORDVPN_COUNTRY=GB
+            - NORDVPN_PROTOCOL=tcp
+            - NORDVPN_CATEGORY=legacy_p2p
+            - OPENVPN_USERNAME=7PubespEtbWubwHF4YWgYQVZ
+            - OPENVPN_PASSWORD=GhsURZsVA9337HHKRogc8ziz
+            - LOCAL_NETWORK=192.168.0.0/16
+        logging:
+            driver: json-file
+            options:
+                max-size: 10m
+        ports:
+            - '9091:9091'
+            - '51413:51413'
+        image: haugene/transmission-openvpn

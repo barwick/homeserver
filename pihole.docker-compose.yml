@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    cap_add:
+      - NET_ADMIN    # Required
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 67:67/udp
+      - 81:81/tcp
+    environment:
+      TZ: Europe/Belfast
+      WEBPASSWORD: Q2NNdQBQ9N4ZhpiNM@Fh
+      WEB_PORT: 81
+      PIHOLE_BASE: /data/pihole
+      DNSMASQ_USER: root
+    volumes:
+      - /data/pihole:/data/pihole
+    restart: unless-stopped
+    network_mode: host

@@ -1,0 +1,16 @@
+version: '3'
+services:
+  zigbee2mqtt:
+    container_name: zigbee2mqtt
+    image: koenkk/zigbee2mqtt:latest
+    volumes:
+      - /data/zigbee2mqtt/data:/app/data
+      - /run/udev:/run/udev:ro
+    ports:
+      - 8080:8080
+    devices:
+      - /dev/zigbee:/dev/ttyUSB0
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Belfast
+    network_mode: host

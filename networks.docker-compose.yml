@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+    works:
+        image: scratch
+        restart: always
+        container_name: net_works
+        deploy:
+            placement:
+                constraints:
+                    - "node.hostname==scratch"
+        networks:
+            - applications
+            - smarthome
+
+
+networks:
+  applications:
+    name: applications
+    attachable: false
+  smarthome:
+    name: smarthome
+    attachable: false
