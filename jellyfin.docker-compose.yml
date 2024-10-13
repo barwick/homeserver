@@ -1,20 +1,20 @@
 version: "3"
 services:
-  nordvpn:
-    image: ghcr.io/bubuntux/nordvpn
-    cap_add:
-      - NET_ADMIN               # Required
-      - NET_RAW                 # Required
-    environment:                # Review https://github.com/bubuntux/nordvpn#environment-variables
-      - TOKEN=e9f2aba498b430d992e2591029485ca078531aa5c2df05899631478c0179681c
-      - CONNECT=United_Kingdom
-      - TECHNOLOGY=NordLynx
-      - NETWORK=192.168.1.0/24  # So it can be accessed within the local network
-    ports: # expose ports for applications using nordvpn
-      - 8096:8096 # Jellyfin WebUI
-      - 7359:7359/udp # Jellyfin local client discovery
-    sysctls:
-      - net.ipv6.conf.all.disable_ipv6=1  # Recomended if using ipv4 only
+  # nordvpn:
+  #   image: ghcr.io/bubuntux/nordvpn
+  #   cap_add:
+  #     - NET_ADMIN               # Required
+  #     - NET_RAW                 # Required
+  #   environment:                # Review https://github.com/bubuntux/nordvpn#environment-variables
+  #     - TOKEN=e9f2aba498b430d992e2591029485ca078531aa5c2df05899631478c0179681c
+  #     - CONNECT=United_Kingdom
+  #     - TECHNOLOGY=NordLynx
+  #     - NETWORK=192.168.1.0/24  # So it can be accessed within the local network
+  #   ports: # expose ports for applications using nordvpn
+  #     - 8096:8096 # Jellyfin WebUI
+  #     - 7359:7359/udp # Jellyfin local client discovery
+  #   sysctls:
+  #     - net.ipv6.conf.all.disable_ipv6=1  # Recomended if using ipv4 only
 
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
@@ -25,13 +25,16 @@ services:
       - TZ=Etc/UTC
       - JELLYFIN_PublishedServerUrl=192.168.1.11
     volumes:
-      - /data/jellyfin/config:/config
-      - /data/jellyfin/tvshows:/data/tvshows
-      - /data/jellyfin/movies:/data/movies
-      - /data/torrent/downloads/complete:/data/torrents:ro
+      - /mnt/data/jellyfin/config:/config
+      - /mnt/data/jellyfin/tvshows:/data/tvshows
+      - /mnt/data/jellyfin/movies:/data/movies
+      - /media/data/torrent/downloads/complete:/data/torrents:ro
+    ports:
+      - 8096:8096 # Jellyfin WebUI
+      - 7359:7359/udp # Jellyfin local client discovery
     restart: unless-stopped
-    network_mode: service:nordvpn
-    depends_on:
-      - nordvpn
+    # network_mode: service:nordvpn
+    # depends_on:
+    #   - nordvpn
 
       
