@@ -8,9 +8,9 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /data/torrent/watch:/watch
-      - /data/torrent/downloads:/downloads
-      - /data/torrent/config:/config
+      - /media/data/torrent/watch:/watch
+      - /media/data/torrent/downloads:/downloads
+      - /media/data/torrent/config:/config
     ports:
       - 9091:9091
       - 51413:51413
