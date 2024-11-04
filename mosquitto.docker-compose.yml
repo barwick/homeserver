@@ -1,4 +1,5 @@
-mosquitto:
+services:
+  mosquitto:
     image: eclipse-mosquitto
     container_name: mosquitto
     volumes:
