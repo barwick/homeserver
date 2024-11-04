@@ -3,12 +3,11 @@ version: '3.5'
 services:
   files:
     image: nginx
-    container_name: files
-    hostname: files.local
+    container_name: nginx
     ports:
       - 82:80
       - 443:443
     volumes:
-      - /data/files/config/nginx.conf:/etc/nginx/nginx.conf
-      - /data:/data
+      - /data-pool/containers/nginx/config/nginx.conf:/etc/nginx/nginx.conf
+      - /:/data
     restart: unless-stopped

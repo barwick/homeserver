@@ -18,6 +18,6 @@ services:
       PIHOLE_BASE: /data/pihole
       DNSMASQ_USER: root
     volumes:
-      - /mnt/data/pihole:/data/pihole
+      - /data-pool/containers/data/pihole:/data/pihole
     restart: unless-stopped
     network_mode: host

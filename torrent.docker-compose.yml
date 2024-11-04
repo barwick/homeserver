@@ -10,7 +10,7 @@ services:
     volumes:
       - /media/data/torrent/watch:/watch
       - /media/data/torrent/downloads:/downloads
-      - /media/data/torrent/config:/config
+      - /data-pool/containers/torrent/config:/config
     ports:
       - 9091:9091
       - 51413:51413

@@ -4,7 +4,7 @@ services:
     container_name: homeassistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
     volumes:
-      - /data/homeassistant/config:/config
+      - /data-pool/containers/homeassistant/config:/config
       - /etc/localtime:/etc/localtime:ro
     devices:
       - /dev/zigbee:/dev/ttyUSB0

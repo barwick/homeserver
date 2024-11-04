@@ -6,7 +6,7 @@ services:
     image: vaultwarden/server:latest
     restart: unless-stopped
     volumes:
-      - /data/vaultwarden/data:/data
+      - /data-pool/containers/vaultwarden/data:/data
     ports:
       - 83:80
       - 3012:3012

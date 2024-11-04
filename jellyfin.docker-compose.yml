@@ -25,9 +25,9 @@ services:
       - TZ=Etc/UTC
       - JELLYFIN_PublishedServerUrl=192.168.1.11
     volumes:
-      - /mnt/data/jellyfin/config:/config
-      - /mnt/data/jellyfin/tvshows:/data/tvshows
-      - /mnt/data/jellyfin/movies:/data/movies
+      - /data-pool/containers/jellyfin/config:/config
+      - /data-pool/containers/jellyfin/tvshows:/data/tvshows
+      - /data-pool/containers/jellyfin/movies:/data/movies
       - /media/data/torrent/downloads/complete:/data/torrents:ro
     ports:
       - 8096:8096 # Jellyfin WebUI
