@@ -1,0 +1,17 @@
+services:
+  scrutiny:
+    image: ghcr.io/analogj/scrutiny:master-omnibus
+    container_name: scrutiny
+    cap_add:
+      - SYS_RAWIO
+      - SYS_ADMIN
+    ports:
+      - "8080:8080" # webapp
+    volumes:
+      - /run/udev:/run/udev:ro
+      - /data-pool/containers/scrutiny:/opt/scrutiny/config # 
+    devices:
+      - "/dev/sda"
+      - "/dev/sdb"
+      - "/dev/sdc"
+      - "/dev/sdd"
